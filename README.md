@@ -203,3 +203,17 @@ Using the same GCP account profile that provisioned the infrastructure, you can 
 ```
 gcloud container clusters get-credentials beta --region europe-west1 --project your-account-id/project
 ```
+
+---
+
+## Delete Provisioned Infrastructure
+Once you are done with the infrastructure, remember to destroy it with the `terraform destroy -auto-approve` command in each of the respective directories. The *-auto-approve* flag will skip the step of telling you what will be destroyed. The project is structured to destroy everything that is provisioned.
+
+Repeat these steps for each of the folders.
+```
+cd <directory> # i.e. eks-clusters
+terraform destroy -auto-approve
+```
+
+## Potential Issues
+If you provision additional infrastructure such as Load Balancers that is not declared in this source code, you might run into issues when attempting to delete resources that would require those additional resources to be deleted first. This project is structured to provision and delete what has been declared. Make sure you delete any additional resources that you create.
